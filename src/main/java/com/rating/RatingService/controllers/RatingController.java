@@ -26,7 +26,10 @@ public class RatingController {
     }
     @GetMapping("/users/{userId}")
     public ResponseEntity<List<Rating>> getRatingsByUserId(@PathVariable String userId){
-        return ResponseEntity.status(HttpStatus.OK).body(ratingService.getRatingByUserId(userId));
+        System.out.println("user in rating: "+userId);
+        ResponseEntity<List<Rating>> body = ResponseEntity.status(HttpStatus.OK).body(ratingService.getRatingByUserId(userId));
+        body.getBody().forEach(System.out::println);
+        return body;
     }
     @GetMapping("/hotels/{hotelId}")
     public ResponseEntity<List<Rating>> getRatingByHotelId(@PathVariable String hotelId){
